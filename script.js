@@ -9,16 +9,16 @@ function showModal(message) {
     });
 }
 
-document.getElementById("myForm").addEventListener("submit", function(event) {
+var form=document.getElementById("myForm");
+form.addEventListener("submit", function(event) {
     event.preventDefault();
-    document.getElementById("myForm").disabled = true;
     showModal("Submitting form...");
     var xhr = new XMLHttpRequest();
     xhr.open("POST", this.action);
     xhr.onreadystatechange = function() {
         var response = xhr.responseText;
         showModal(response);
-        document.getElementById("myForm").reset();
+        form.reset();
     };
     xhr.send(new FormData(this));
 
